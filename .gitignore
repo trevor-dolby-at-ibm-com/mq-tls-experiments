@@ -15,4 +15,9 @@ dist/
 
 # Undo-tree save-files
 *.~undo-tree
+
+# Maven output
 **/target
+
+# MQ failure reports
+**/FFDC
