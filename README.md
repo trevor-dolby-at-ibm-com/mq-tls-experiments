@@ -64,7 +64,8 @@ tested for this repo meets neither of those conditions (the channel has `SSLCAUT
 certificates come from a private CA) so omitting the system properties will lead to a 2397 MQRC_JSSE_ERROR.
 
 Both JKS and PKCS12 files work with modern Java releases, and after 2.7.14 it is possible to use
-the `ibm.mq.jks` options in application.properties to avoid modifying the JVM system properties.
+the `ibm.mq.jks` options in application.properties to avoid modifying the JVM system properties. See 
+[2.7.14 and later](#2714-and-later) below for details.
 
 #### Notes for 4.0.5
 
@@ -88,7 +89,8 @@ ibm.mq.sslPeerName=CN=mqserver,OU=ExpertLabs,O=IBM,L=Minneapolis,ST=MN,C=US
 ibm.mq.outboundSNI=HOSTNAME
 ```
 JSSE will automatically select a key from the keystore for client authentication
-so there is no need in this case to specify the client certificate alias.
+so there is no need in this case to specify the client certificate alias. See
+[outboundSNI](#outboundsni) below for details on that setting.
 
 ### 2.7.14 and later
 
