@@ -7,7 +7,6 @@
 
 package com.ibm.experiments.springmq;
 
-import javax.jms.ConnectionFactory;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
@@ -41,49 +40,4 @@ public class JMSApplication
     {    
         SpringApplication.run(JMSApplication.class, args);    
     }
-
-    
-    /**
-     * Lookup the JMS connection factory and create the Spring bean
-     * 
-     * @return, the connection factory from Liberty
-     */
-    //@Bean
-    public ConnectionFactory connectionFactory() 
-    {    
-        return null;
-    }
-    
-
-    /**
-     * Create JMS listener for the MDP, setting the CF, task executor, and Txn Mgr
-     * from Spring beans.
-     * 
-     * @param connectionFactory, the connection factory from Liberty
-     * @return a JMS listener container from the factory for the MDP
-     */
-    //@Bean
-    public JmsListenerContainerFactory<?> myFactoryBean(ConnectionFactory connectionFactory) 
-    {    
-        DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
-        factory.setConnectionFactory(connectionFactory);
-        
-        // For JCICS integration it is important to set the JMSListenerContainerFactory to
-        // the DefaultManagedTaskExecutor
-        factory.setTaskExecutor(taskExecutor());
-        
-        return factory;
-    }
-
-    /**
-     * Ensure we supply Spring with Liberty executor threads which are CICS enabled by default
-     * 
-     * @return the DefaultManagedTaskExecutor
-     */
-    //@Bean
-    public TaskExecutor taskExecutor() 
-    {    
-        return new DefaultManagedTaskExecutor();
-    }
-
 }
