@@ -135,6 +135,16 @@ The `ibm.mq.outboundSNI=HOSTNAME` setting tells the MQ client code to use the de
 https://github.com/trevor-dolby-at-ibm-com/ace-mq-tls-examples/blob/main/openshift/README.md#tls-sni for
 more details, but using "HOSTNAME" is usually best for CP4i queue manager connections.
 
+## JMS connection factory options
+
+The list of string attributes can be found in https://public.dhe.ibm.com/software/integration/wmq/docs/V9.4/PDFs/mq94.develop.pdf
+and includes settings such as `sslPeerName` and `sslCipherSuite`. The `outboundSNI` setting is separate from
+the connection factory and should be set as a system property:
+```
+-Dcom.ibm.mq.cfg.SSL.outboundSNI=HOSTNAME
+```
+Keystores and truststores may also need to be configured as system properties as shown above.
+
 ## Debugging
 
 Errors such as `JMSCMQ0001: IBM MQ call failed with compcode '2' ('MQCC_FAILED') reason '2397' ('MQRC_JSSE_ERROR')` 
